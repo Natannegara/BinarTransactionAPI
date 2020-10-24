@@ -6,8 +6,7 @@ const booksModel = require('../models/booksModel')
 const genresModel = require('../models/genresModel')
 const itemTransactionModel = require('../models/itemTransactionModel')
 const storesModel = require('../models/storesModel')
-
-
+const checkingModel = require("../findModel")
 
 
 /**
@@ -29,28 +28,10 @@ function addData(tableName, data) {
   if (!data.id) return false
   if (typeof data.id !== 'string') return false
 
-  let shapedData;
-  if (tableName == 'transactions') {
-    shapedData = shapeObject(data, transactionModel)
-  }
-  if (tableName == 'users') {
-    shapedData = shapeObject(data, userModel)
-  }
-  if (tableName == 'itemTransactions') {
-    shapedData = shapeObject(data, itemTransactionModel)
-  }
-  if (tableName == 'stores') {
-    shapedData = shapeObject(data, storesModel)
-  }
-  if (tableName == 'genres') {
-    shapedData = shapeObject(data, genresModel)
-  }
-  if (tableName == 'books') {
-    shapedData = shapeObject(data, booksModel)
-  }
 
-
+  let shapedData = checkingModel(tableName, data)
   if (!shapedData) return false
+
 
   db.get(tableName)
     .push(shapedData)
