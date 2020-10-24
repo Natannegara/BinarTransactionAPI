@@ -1,6 +1,6 @@
 module.exports = [
   'id',
-  'userId',
-  'name',
+  'customId',
+  'storeId',
   'nominal'
 ]
