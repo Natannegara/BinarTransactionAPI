@@ -28,10 +28,8 @@ function addData(tableName, data) {
   if (!data.id) return false
   if (typeof data.id !== 'string') return false
 
-
   let shapedData = checkingModel(tableName, data)
   if (!shapedData) return false
-
 
   db.get(tableName)
     .push(shapedData)
