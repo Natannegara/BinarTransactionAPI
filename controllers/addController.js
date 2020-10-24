@@ -1,11 +1,4 @@
 const db = require("../connections/dbConnection")
-const shapeObject = require("../helpers/shapeObjectHelper")
-const transactionModel = require("../models/transactionModel")
-const userModel = require("../models/userModel")
-const booksModel = require('../models/booksModel')
-const genresModel = require('../models/genresModel')
-const itemTransactionModel = require('../models/itemTransactionModel')
-const storesModel = require('../models/storesModel')
 const checkingModel = require("../findModel")
 
 

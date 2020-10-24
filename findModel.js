@@ -3,9 +3,9 @@ const path = require('path')
 const routesPath = path.resolve('models')
 const filePaths = readDir.readDirDeepSync(routesPath)
 const fs = require('fs');
-const shapeObject = require('./helpers/shapeObjectHelper');
 let rawdata = fs.readFileSync('db.json')
 let keys = JSON.parse(rawdata)
+const shapeObject = require('./helpers/shapeObjectHelper');
 
 
 function checkingModel(tableName, data) {
