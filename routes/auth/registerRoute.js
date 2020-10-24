@@ -10,7 +10,6 @@ app.post('/auth/register', (req, res) => {
   const body = req.body
   const isUserExists = getData('users', body)
   // console.log(isUserExists);
-  // !isUserExists
   if (isUserExists.length == 0) {
     body.id = uid()
     const result = addData('users', body)
