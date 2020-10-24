@@ -2,5 +2,6 @@ module.exports = [
   'id',
   'customId',
   'storeId',
-  'nominal'
+  'nominal',
+  'transactionDate'
 ]

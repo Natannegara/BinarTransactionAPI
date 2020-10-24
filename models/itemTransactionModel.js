@@ -2,5 +2,6 @@ module.exports = [
     'id',
     'transactionId',
     'bookId',
-    'bookPrice'
+    'bookPrice',
+    'quantity'
 ]
