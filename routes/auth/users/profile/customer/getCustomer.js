@@ -2,11 +2,10 @@
 const express = require('express')
 const app = express.Router()
 const getData = require('../../../../../controllers/getController')
+const { verifyJwt } = require('../../../../../middlewares/jwtMiddleware')
 
-app.get('/users/profile/customer', (req, res) => {
-    const query = req.query
-    if (Object.keys(query).length != 1) return res.json({ msg: "find using one key only" })
-    if (query) return res.send(getData('users', query))
-    if (req.body) return res.json({ msg: "request body not allowed" })
+app.get('/users/profile/customer', verifyJwt, (req, res) => {
+    if (req.user.role != 'customer') return res.json({ msg: "Only customer can access here" })
+    if (req.user) return res.json(req.user)
 })
 module.exports = app

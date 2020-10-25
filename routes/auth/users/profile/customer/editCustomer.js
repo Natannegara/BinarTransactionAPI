@@ -3,18 +3,19 @@ const express = require('express')
 const app = express.Router()
 const editData = require('../../../../../controllers/editController')
 const getData = require('../../../../../controllers/getController')
+const { verifyJwt } = require('../../../../../middlewares/jwtMiddleware')
 const userModel = require('../../../../../models/userModel')
 
 
 
-app.patch('/users/profile/customer', (req, res) => {
+app.patch('/users/profile/customer', verifyJwt, (req, res) => {
+    if (req.user.role != 'customer') return res.json({ msg: "Only customer can access here" })
     const id = req.query.id
     const query = req.body
     const listKeys = Object.keys(query)
     listKeys.forEach(key => {
         if (userModel.includes(key) != true) throw new Error('Please input right query')
     });
-
 
     const data = getData('users')
     function fillQuery() {
