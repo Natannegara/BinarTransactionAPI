@@ -1,4 +1,5 @@
 const db = require("../connections/dbConnection")
+const checkingModel = require('../findModel')
 
 /**
  * Edit data
@@ -21,19 +22,13 @@ function editData(tableName, id, data) {
     .find({ id })
     .value()
   if (searchResult) {
-    let shapedData;
     data.id = id
-    if (tableName == 'transaction') {
-      shapedData = shapeObject(data, transactionModel)
-    }
-    if (tableName == 'user') {
-      shapedData = shapeObject(data, userModel)
-    }
+    let shapedData = checkingModel(tableName, data)
 
     if (!shapedData) return false
 
     db.get(tableName)
-      .find(id)
+      .find({ id: id })
       .assign(shapedData)
       .write()
 
