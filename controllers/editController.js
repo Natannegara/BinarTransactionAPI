@@ -20,24 +20,25 @@ function editData(tableName, id, data) {
   const searchResult = db.get(tableName)
     .find({ id })
     .value()
+  // checking whether users input right query
+  const model = Object.keys(searchResult)
+  const keys = Object.keys(data)
+  keys.forEach(key => {
+    if (model.includes(key) != true) throw new Error('wrong query shape')
+  });
+  // if users only update one parameter, this is the solution
   if (searchResult) {
-    let shapedData;
-    data.id = id
-    if (tableName == 'transaction') {
-      shapedData = shapeObject(data, transactionModel)
-    }
-    if (tableName == 'user') {
-      shapedData = shapeObject(data, userModel)
-    }
+    searchResult.id = data.id ? data.id : searchResult.id
+    searchResult.username = data.username ? data.username : searchResult.username
+    searchResult.email = data.email ? data.email : searchResult.email
+    searchResult.password = data.password ? data.password : searchResult.password
+    searchResult.role = data.role ? data.role : searchResult.role
 
-    if (!shapedData) return false
-
-    db.get(tableName)
+    const result = db.get(tableName)
       .find(id)
-      .assign(shapedData)
+      .assign(searchResult)
       .write()
-
-    return data
+    return result
   } else {
     return false
   }
