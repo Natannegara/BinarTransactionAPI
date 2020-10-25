@@ -1,13 +1,13 @@
 //EDIT ROUTE FINAL
 const express = require('express')
 const app = express.Router()
-const editData = require('../controllers/editController')
-const getData = require('../controllers/getController')
-const userModel = require('../models/userModel')
+const editData = require('../../../../../controllers/editController')
+const getData = require('../../../../../controllers/getController')
+const userModel = require('../../../../../models/userModel')
 
 
 
-app.patch('/users/profile', (req, res) => {
+app.patch('/users/profile/customer', (req, res) => {
     const id = req.query.id
     const query = req.body
     const listKeys = Object.keys(query)
