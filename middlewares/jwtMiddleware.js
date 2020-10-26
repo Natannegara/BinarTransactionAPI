@@ -32,7 +32,7 @@ function verifyJwt(role) {
           req.send('you cant access here using your role')
         }
       } catch (error) {
-        res.status(401).send('unauthorization')
+        res.status(401).send('wrong token')
       }
     }
   }
