@@ -23,13 +23,9 @@ function editData(tableName, id, data) {
     .value()
   if (searchResult) {
     data.id = id
-    let shapedData = checkingModel(tableName, data)
-
-    if (!shapedData) return false
-
     db.get(tableName)
       .find({ id: id })
-      .assign(shapedData)
+      .assign(data)
       .write()
 
     return data

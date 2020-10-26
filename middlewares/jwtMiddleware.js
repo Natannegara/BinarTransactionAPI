@@ -18,16 +18,22 @@ function signJwt(data) {
  * @param {String} token jwt token
  * @returns {any} returns data payload
  */
-function verifyJwt(req, res, next) {
-  const authorization = req.headers.authorization
-  if (authorization) {
-    const splt = authorization.split(' ')[1]
-    try {
-      const userChecking = jwt.verify(splt, jwtConfig.secret)
-      req.user = userChecking
-      next()
-    } catch (error) {
-      res.status(401).send('unauthorization')
+function verifyJwt(role) {
+  return function verifyJwt(req, res, next) {
+    const authorization = req.headers.authorization
+    if (authorization) {
+      const splt = authorization.split(' ')[1]
+      try {
+        const userChecking = jwt.verify(splt, jwtConfig.secret)
+        req.user = userChecking
+        if (req.user.role === role) {
+          next()
+        } else {
+          req.send('you cant access here using your role')
+        }
+      } catch (error) {
+        res.status(401).send('unauthorization')
+      }
     }
   }
 }
