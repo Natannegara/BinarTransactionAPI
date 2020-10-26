@@ -12,6 +12,7 @@ app.post('/auth/login', (req, res) => {
   if (!isValid) return res.json({
     msg: " Please input username, password and role (use body !!)"
   })
+
   const result = getData('users', body)[0]
   if (result) {
     const token = signJwt(result)

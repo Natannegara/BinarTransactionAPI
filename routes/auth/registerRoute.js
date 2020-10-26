@@ -10,7 +10,9 @@ app.post('/auth/register', (req, res) => {
   const body = req.body
   const isUserExists = getData('users', { username: body.username })
   const isEmailExist = getData('users', { email: body.email })
-  if (!isUserExists && !isEmailExist) {
+  const data = getData('users', body)
+
+  function reg() {
     body.id = uid()
     const result = addData('users', body)
     if (result) {
@@ -19,6 +21,13 @@ app.post('/auth/register', (req, res) => {
       // called if request body object key is lacking
       res.status(400).send('Bad request')
     }
+  }
+
+  if (data.length == 0) {
+    return reg()
+  }
+  if (!isUserExists && !isEmailExist) {
+    return reg()
   } else {
     // called if user is already exists
     res.status(409).send('User exists, please log in')
