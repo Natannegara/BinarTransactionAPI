@@ -5,7 +5,7 @@ const editData = require('../../controllers/editController');
 app.patch("/books", (req, res) => {
     const body = req.body
     const id = req.query.id
-    const result = db.edit('books', req.query.id, body)
+    const result = editData('books', req.query.id, body)
     if (result) {
         res.send(result)
     }
