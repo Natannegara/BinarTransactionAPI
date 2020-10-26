@@ -2,7 +2,7 @@ POST http://localhost:3000/auth/register
 content-type: application/json
 
 {
-    "role": "admin",
+    "role": "seller",
     "username": "alana",
     "email": "alana@mobile.com",
     "password": "world123"
