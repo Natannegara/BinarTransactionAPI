@@ -8,6 +8,7 @@ app.get('/stores', verifyJwt('seller'), (req, res) => {
     const result = getData('stores', req.query);
     if (result && result.length) {
         res.send(result);
+
     } else {
         res.status(404).send('Data not found');
     }
