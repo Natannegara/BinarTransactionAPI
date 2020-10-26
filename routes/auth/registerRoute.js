@@ -8,8 +8,8 @@ const uid = require('uid')
 
 app.post('/auth/register', (req, res) => {
   const body = req.body
-  const isUserExists = getData('users', { username: body.username })
-  const isEmailExist = getData('users', { email: body.email })
+  const isUserExists = getData('users', { username: body.username })[0]
+  const isEmailExist = getData('users', { email: body.email })[0]
   if (!isUserExists && !isEmailExist) {
     body.id = uid()
     const result = addData('users', body)
