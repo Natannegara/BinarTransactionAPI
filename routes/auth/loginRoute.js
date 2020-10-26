@@ -10,7 +10,7 @@ app.post('/auth/login', (req, res) => {
   const keyLogin = ["username", "password", "role"]
   const isValid = shapedBody(body, keyLogin)
   if (!isValid) return res.json({
-    msg: " Please input the right data (use body !!)"
+    msg: " Please input username, password and role (use body !!)"
   })
   const result = getData('users', body)[0]
   if (result) {
