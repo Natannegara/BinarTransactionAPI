@@ -7,7 +7,6 @@ const app = express.Router();
 app.patch("/stores", (req, res) => {
     const body = req.body;
     const id = req.query.id;
-    console.log(body);
     const stores = editData("stores", id, body);
     //=============> Check if query exist
     if (id) {

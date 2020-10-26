@@ -9,9 +9,7 @@ app.delete("/stores", (req, res) => {
     const body = req.body;
     const id = req.query.id;
     const data = getData("stores", id)
-
     //===========> Check if request query exist
-
     if (id) {
         if (data && Number.isInteger(Number(id))) {
             removeDataById("stores", id)

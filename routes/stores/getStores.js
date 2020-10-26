@@ -5,7 +5,6 @@ const getData = require('../../controllers/getController');
 
 router.get('/stores', (req, res) => {
     const result = getData('stores', req.query);
-    console.log(req.query);
     if (result && result.length) {
         res.send(result);
     } else {
