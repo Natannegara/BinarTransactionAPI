@@ -1,9 +1,9 @@
-//=============Imported Files
 const express = require('express');
 const addData = require('../../controllers/addController');
-const router = express.Router();
+const { verifyJwt } = require('../../middlewares/jwtMiddleware');
+const app = express.Router();
 
-router.post('/stores', (req, res) => {
+app.post('/stores', verifyJwt('seller'), (req, res) => {
     const body = req.body
     const result = addData('stores', body);
     if (!result) {
@@ -15,4 +15,4 @@ router.post('/stores', (req, res) => {
 });
 
 
-module.exports = router;
+module.exports = app;

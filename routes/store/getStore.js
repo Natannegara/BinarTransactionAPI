@@ -1,9 +1,10 @@
 const express = require('express');
-const router = express.Router();
+const { verifyJwt } = require('../../middlewares/jwtMiddleware');
+const app = express.Router();
 const getData = require('../../controllers/getController');
 
 
-router.get('/stores', (req, res) => {
+app.get('/stores', verifyJwt('seller'), (req, res) => {
     const result = getData('stores', req.query);
     if (result && result.length) {
         res.send(result);
@@ -12,4 +13,4 @@ router.get('/stores', (req, res) => {
     }
     return;
 });
-module.exports = router;
+module.exports = app

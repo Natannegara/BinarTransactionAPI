@@ -1,11 +1,11 @@
-//========> Preparing all the necessary const variable with required dependencies
 const express = require("express");
 const getData = require("../../controllers/getController");
 const { removeDataById } = require("../../controllers/removeController");
+const { verifyJwt } = require("../../middlewares/jwtMiddleware");
 //========> Preparing express.Router()
 const app = express.Router();
 
-app.delete("/stores", (req, res) => {
+app.delete("/stores", verifyJwt('seller'), (req, res) => {
     const body = req.body;
     const id = req.query.id;
     const data = getData("stores", id)

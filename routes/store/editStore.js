@@ -1,10 +1,10 @@
-//===========> Preparing all the necessary const variable with required dependencies
 const express = require("express");
 const editData = require("../../controllers/editController");
+const { verifyJwt } = require("../../middlewares/jwtMiddleware");
 //===========> Preparing express.Router()
 const app = express.Router();
 
-app.patch("/stores", (req, res) => {
+app.patch("/stores", verifyJwt('seller'), (req, res) => {
     const body = req.body;
     const id = req.query.id;
     const stores = editData("stores", id, body);
