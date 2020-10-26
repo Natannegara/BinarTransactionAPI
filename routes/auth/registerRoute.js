@@ -8,7 +8,7 @@ const uid = require('uid')
 
 app.post('/auth/register', (req, res) => {
   const body = req.body
-  const isUserExists = getData('users', body)
+  const isUserExists = getData('users', { username: body.username }).concat(getData('users', { email: body.email }))
   // console.log(isUserExists);
   if (isUserExists.length == 0) {
     body.id = uid()
