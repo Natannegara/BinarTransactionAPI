@@ -3,7 +3,7 @@ const { verifyJwt } = require('../../middlewares/jwtMiddleware')
 const getData = require('../../controllers/getController');
 const app = express.Router()
 
-app.get("/books", verifyJwt('seller'), (req, res) => {
+app.get("/books/customer", verifyJwt('customer'), (req, res) => {
     const result = getData('books');
 
     if (result) {

@@ -1,9 +1,9 @@
 const express = require('express')
-const { verifyJwt } = require('../../middlewares/jwtMiddleware')
+const { verifyJwt } = require('../../../middlewares/jwtMiddleware')
 const app = express.Router()
-const remove = require('../../controllers/removeController')
+const remove = require('../../../controllers/removeController')
 
-app.delete("/books", verifyJwt('seller'), (req, res) => {
+app.delete("/books/seller", verifyJwt('seller'), (req, res) => {
     const query = req.query;
     const id = query.id;
     remove.removeDataByQuery("books", id)

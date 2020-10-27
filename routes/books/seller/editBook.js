@@ -1,9 +1,9 @@
 const express = require('express')
-const { verifyJwt } = require('../../middlewares/jwtMiddleware')
+const { verifyJwt } = require('../../../middlewares/jwtMiddleware')
 const app = express.Router()
-const editData = require('../../controllers/editController');
+const editData = require('../../../controllers/editController');
 
-app.patch("/books", verifyJwt('seller'), (req, res) => {
+app.patch("/books/seller", verifyJwt('seller'), (req, res) => {
     const body = req.body
     const id = req.query.id
     const result = editData('books', id, body)
