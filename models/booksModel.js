@@ -1,7 +1,7 @@
 module.exports = [
     'id',
     'genreId',
-    'bookName',
+    'Name',
     'price',
     'stock'
 ]

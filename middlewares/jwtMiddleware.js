@@ -29,11 +29,13 @@ function verifyJwt(role) {
         if (req.user.role === role) {
           next()
         } else {
-          req.send('you cant access here using your role')
+          res.send('you cant access here using your role')
         }
       } catch (error) {
         res.status(401).send('wrong token')
       }
+    } else {
+      res.status(400).send('unauthorized')
     }
   }
 }
